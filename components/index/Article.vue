@@ -19,7 +19,7 @@
             :key="artikel_card.id"
           >
             <img
-              class="w-full"
+              class="object-cover w-600 h-350"
               :src="artikel_card.gambar_artikel"
               alt="Sunset in the mountains"
             />
@@ -31,9 +31,7 @@
                 {{ artikel_card.tanggal_terbit }}
               </p>
               <p class="text-gray-700 dark:text-gray-300 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+                {{ artikel_card.headline_artikel }}
               </p>
             </div>
             <div class="px-6 py-4">
@@ -76,7 +74,7 @@
                   </h2>
                   <h3 class="text-base md:text-lg tracking-wide">
                     {{ informasi_card.bulan_agenda_mulai }}
-                    {{ informasi_card.tahun_agenda_mulai   }}
+                    {{ informasi_card.tahun_agenda_mulai }}
                   </h3>
                 </div>
                 <div class="col-span-2">
@@ -115,7 +113,10 @@ export default {
     sortedItems: function () {
       return this.informasi_card
         .reverse()
-        .sort((a, b) => new Date(b.tanggal_agenda_mulai) - new Date(a. tanggal_agenda_mulai));
+        .sort(
+          (a, b) =>
+            new Date(b.tanggal_agenda_mulai) - new Date(a.tanggal_agenda_mulai)
+        );
     },
   },
 };

@@ -15,7 +15,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 p-0 w-full">
           <div
             class="card"
-            v-for="artikel_card in artikel_card"
+            v-for="artikel_card in artikel_card.slice().reverse()"
             :key="artikel_card.id"
           >
             <img
@@ -57,7 +57,7 @@
           <div class="flex flex-col">
             <div
               class="flex mb-10"
-              v-for="informasi_card in informasi_card"
+              v-for="informasi_card in sortedItems.slice().reverse()"
               :key="informasi_card.id"
             >
               <div
@@ -72,11 +72,11 @@
               >
                 <div class="flex flex-col justify-center items-center">
                   <h2 class="text-5xl md:text-6xl font-bold tracking-wide">
-                    11
+                    {{ informasi_card.tanggal_only_mulai }}
                   </h2>
                   <h3 class="text-base md:text-lg tracking-wide">
                     {{ informasi_card.bulan_agenda_mulai }}
-                    {{ informasi_card.tahun_angenda_mulai }}
+                    {{ informasi_card.tahun_agenda_mulai   }}
                   </h3>
                 </div>
                 <div class="col-span-2">
@@ -111,6 +111,13 @@ export default {
     },
   },
   methods: {},
+  computed: {
+    sortedItems: function () {
+      return this.informasi_card
+        .reverse()
+        .sort((a, b) => new Date(b.tanggal_agenda_mulai) - new Date(a. tanggal_agenda_mulai));
+    },
+  },
 };
 </script>
 

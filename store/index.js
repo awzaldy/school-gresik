@@ -9,6 +9,7 @@ const createStore = () => {
             admin: [],
             loadedPosts: [],
             loadedInformasi: [],
+            loadedGaleri: [],
             uid: "",
         },
         mutations: {
@@ -31,6 +32,11 @@ const createStore = () => {
             setInformasi(state, posts) {
                 state.loadedInformasi = posts;
             },
+
+            setGaleri(state, posts) {
+                state.loadedGaleri = posts;
+            },
+
             setToken(state, token) {
                 state.token = token;
             },
@@ -57,6 +63,15 @@ const createStore = () => {
                                 postsArray.push({ ...res.data[key], id: key })
                             }
                             vuexContext.commit('setInformasi', postsArray)
+                        })
+                        .catch(e => context.error(e)),
+                    axios.get(process.env.baseUrl + "/DataGaleri.json")
+                        .then(res => {
+                            const postsArray = []
+                            for (const key in res.data) {
+                                postsArray.push({ ...res.data[key], id: key })
+                            }
+                            vuexContext.commit('setGaleri', postsArray)
                         })
                         .catch(e => context.error(e)),
                 ])
@@ -182,6 +197,9 @@ const createStore = () => {
             },
             loadedInformasi(state) {
                 return state.loadedInformasi;
+            },
+            loadedGaleri(state) {
+                return state.loadedGaleri;
             },
             isAuth(state) {
                 return state.token != null;

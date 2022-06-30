@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-      </div>
+        </div>
       <div class="flex flex-col">
         <div class="mb-4">
           <h2 class="text-2xl lg:text-3xl font-bold tracking-wide">
